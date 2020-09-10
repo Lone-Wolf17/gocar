@@ -76,18 +76,18 @@ flutter:
   #  - images/a_dot_ham.jpeg
 
   assets:
-    - assets/images/intro/1.png
-    - assets/images/intro/2.png
+    - assets/images/intro/driver.png
+    - assets/images/intro/time.png
     - assets/images/intro/login.png
     - assets/images/intro/pick.png
-    - assets/images/usuario/avatar_user.png
+    - assets/images/user/avatar_user.png
     - assets/images/car/car.png
-    - assets/images/car/taxiinativo.png
+    - assets/images/car/taxi_native.png
     - assets/images/car/taxi.png
     - assets/images/car/normal.png
-    - assets/images/car/normalinativo.png
-    - assets/images/historico/mapa.png
-    - assets/images/historico/pick.png
+    - assets/images/car/normal_native.png
+    - assets/images/history/map.png
+    - assets/images/history/pick.png
     - assets/images/car/taximarker.png
     - assets/images/car/pulsar.flr
 

@@ -1,59 +1,51 @@
 
 
-enum ReferenciaLocal{
-  Origem,
-  Destino
+enum LocalReference { Origin, Destination }
+
+enum TripStatus {
+  Open,
+  AwaitingDriver,
+  DriverNotified,
+  DriverOnTheWay,
+  Started,
+  Finished,
+  Canceled
 }
 
+enum ActionReport { Edit, Delete }
 
-enum StatusViagem{
-  Aberta,
-  AguardadandoMotorista,
-  MotoristaNotificado,
-  MotoristaACaminho,
-  Iniciada,
-  Finalizada,
-  Cancelada
+enum StepDriverHome {
+  Start, /*first stage of the process*/
+  LookingForTravel, /*looking for driver*/
+  TravelFound, /*notifies the driver with a question if he wants to accept*/
+  TravelAccepted, /*driver accepted trip, driver goes to the passenger*/
+  StartTravel, /*driver accepted trip, driver goes to the passenger*/
+  EndTrip /*End Trip*/
 }
 
-enum AcaoRelatorio {
-  Editar,
-  Deletar
+enum StepPassengerHome {
+  Start, /*first stage of the process*/
+  SelectOriginAndDestination, /*menu with search for items*/
+  ConfirmValue, /*trip confirmation menu*/
+  LookingForADriver, /*looking for driver*/
+  LookingForTravel, /*looking for driver*/
+  TravelFound, /*notifies the driver with a question if he wants to accept*/
+  DriverAccepted, /*driver accepted trip, driver goes to the passenger*/
+  TripInProgress, /*Trip in Progress*/
+  EndTrip /*End Trip*/
 }
 
-
-enum StepMotoristaHome {
-  Inicio, /*primeira etapa do processo*/
-  Procurandoviagem, /*procurando motorista*/
-  Viagemencontrada, /*notifica ao motorista com pergunta se ele quer aceitar*/
-  Viagemaceita, /*motorista aceitou viagem, motorista vai até o passageiro*/
-  Iniciarviagem, /*motorista aceitou viagem, motorista vai até o passageiro*/
-  Fimviagem /*fim corrida*/
-}
-
-enum StepPassageiroHome {
-  Inicio, /*primeira etapa do processo*/
-  SelecionarOrigemDestino, /*menu com busca de itens*/
-  ConfirmaValor, /*menu confirmacao de corrida*/
-  ProcurandoMotorista, /*procurando motorista*/
-  Procurandoviagem, /*procurando motorista*/
-  Viagemencontrada, /*notifica ao motorista com pergunta se ele quer aceitar*/
-  MotoristaAceitou, /*motorista aceitou viagem, motorista vai até o passageiro*/
-  CorridaAndamento, /*fim corrida*/
-  Fimcorrida /*fim corrida*/
-}
-
-enum TipoCarro{
+enum CarType {
   Pop,
   Top
 }
 
-enum TipoLocal{
-  casa,
-  trabalho
+enum LocaleType {
+  Home,
+  Work
 }
 
-enum Ambiente {
-  Passageiro,
-  Motorista
+enum PersonType {
+  Passenger,
+  Driver
 }

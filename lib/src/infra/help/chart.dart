@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-class CharPieFlutter {
-  double Quantidade;
-  String Label;
-  Color Cor;
+class PieChartFlutter {
+  double amount;
+  String label;
+  Color color;
 
-  CharPieFlutter(this.Quantidade, this.Label, this.Cor);
+  PieChartFlutter(this.amount, this.label, this.color);
 }

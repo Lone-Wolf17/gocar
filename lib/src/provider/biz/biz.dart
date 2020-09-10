@@ -1,6 +1,6 @@
-export 'motorista-biz/step-motorista-inicio.biz.dart';
-export 'motorista-biz/step-motorista-procurar-viagem.biz.dart';
-export 'motorista-biz/step-motorista-viagem-iniciada.biz.dart';
-export 'passageiro-biz/step-confirma-corrida.biz.dart';
-export 'passageiro-biz/step-passageiro-inicio.biz.dart';
-export 'passageiro-biz/step-passageiro-procurar-motorista.biz.dart';
+export 'driver-biz/step-driver-trip-search.biz.dart';
+export 'driver-biz/step-driver-trip-started.biz.dart';
+export 'driver-biz/step-start-driver.biz.dart';
+export 'passenger-biz/step-confirm-trip.biz.dart';
+export 'passenger-biz/step-passenger-driver-search.biz.dart';
+export 'passenger-biz/step-start-passenger.biz.dart';

@@ -1,33 +1,27 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'entities.dart';
 
 class Local {
-  String Nome;
-  String Endereco;
-  double Latitude;
-  double Logitude;
-  ReferenciaLocal referencia;
+  String name;
+  String address;
+  double latitude;
+  double longitude;
+  LocalReference reference;
 
   Local(
-      {this.Nome,
-      this.Endereco,
-      this.Latitude,
-      this.Logitude,
-      this.referencia});
+      {this.name, this.address, this.latitude, this.longitude, this.reference});
 
   static List<Local> fromJson(
-      Map<String, dynamic> json, ReferenciaLocal referencia) {
+      Map<String, dynamic> json, LocalReference reference) {
     List<Local> resultList = List();
 
     var results = json['results'] as List;
     for (var item in results) {
       var itemList = Local(
-          Nome: item['name'],
-          Endereco: item['formatted_address'],
-          Latitude: item['geometry']['location']['lat'],
-          Logitude: item['geometry']['location']['lng'],
-          referencia: referencia);
+          name: item['name'],
+          address: item['formatted_address'],
+          latitude: item['geometry']['location']['lat'],
+          longitude: item['geometry']['location']['lng'],
+          reference: reference);
       resultList.add(itemList);
     }
     return resultList;
@@ -35,24 +29,24 @@ class Local {
 
   toJson() {
     return {
-      "Nome": this.Nome,
-      "Endereco": this.Endereco,
-      "Latitude": this.Latitude,
-      "Logitude": this.Logitude,
+      "name": this.name,
+      "address": this.address,
+      "latitude": this.latitude,
+      "longitude": this.longitude,
     };
   }
 
   Local.fromMap(Map<dynamic, dynamic> data)
-      : Nome = data["Nome"],
-        Endereco = data["Endereco"],
-        Latitude = data["Latitude"],
-        Logitude = data["Logitude"];
+      : name = data["name"],
+        address = data["address"],
+        latitude = data["latitude"],
+        longitude = data["longitude"];
 }
 
-class DistanciaTempo {
-  String Distancia;
-  String Tempo;
-  double Valor;
+class DistanceTime {
+  String distance;
+  String time;
+  double value;
 
-  DistanciaTempo({this.Distancia, this.Tempo, this.Valor});
+  DistanceTime({this.distance, this.time, this.value});
 }

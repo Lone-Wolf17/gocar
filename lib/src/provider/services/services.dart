@@ -1,6 +1,6 @@
 export 'cielo.service.dart';
+export 'driver.service.dart';
 export 'google.service.dart';
-export 'motorista.service.dart';
-export 'passageiro.service.dart';
-export 'relatorio.service.dart';
-export 'viagem.service.dart';
+export 'passenger.service.dart';
+export 'report.service.dart';
+export 'trip.service.dart';

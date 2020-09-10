@@ -23,7 +23,7 @@ class AuthenticationAdmin {
       print("signed in " + user.displayName);
     } on PlatformException catch (ex) {
       print(ex);
-      print('Erro communication platform');
+      print('Platform Communication Error');
       throw ex;
     } catch (ex) {
       throw ex;
@@ -37,7 +37,7 @@ class AuthenticationAdmin {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on PlatformException catch (ex) {
-      print('Erro communication platform');
+      print('Platform Communication Error');
       throw ex;
     } catch (ex) {
       throw ex;

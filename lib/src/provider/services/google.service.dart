@@ -8,53 +8,50 @@ import 'package:http/http.dart' as http;
 
 class GoogleService {
 
-
   Future<String> getRouteCoordinates(LatLng l1, LatLng l2) async {
-    String url = "https://maps.googleapis.com/maps/api/directions/json?origin=${l1
-        .latitude},${l1.longitude}&destination=${l2.latitude},${l2
-        .longitude}&key=${keyGoogle}";
+    String url =
+        "https://maps.googleapis.com/maps/api/directions/json?origin=${l1.latitude},${l1.longitude}&destination=${l2.latitude},${l2.longitude}&key=$keyGoogle";
     http.Response response = await http.get(url);
     Map values = jsonDecode(response.body);
     return values["routes"][0]["overview_polyline"]["points"];
   }
 
-
-  Future<String> getAddresByCoordinates(String latitude,
+  Future<String> getAddressByCoordinates(String latitude,
       String longitude) async {
-    String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${keyGoogle}";
+    String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=$keyGoogle";
     http.Response response = await http.get(url);
     Map values = jsonDecode(response.body);
 
     return values["results"][0]["formatted_address"];
   }
 
-
-  Future<List<Local>> searchPlace(Filtro filtro) async {
+  Future<List<Local>> searchPlace(Filter filter) async {
     String url =
-        "https://maps.googleapis.com/maps/api/place/textsearch/json?key=${keyGoogle}&language=pt&query=" +
-            Uri.encodeQueryComponent(filtro.PalavraChave);
+        "https://maps.googleapis.com/maps/api/place/textsearch/json?key=$keyGoogle&language=pt&query=" +
+            Uri.encodeQueryComponent(filter.keyWord);
 
     var res = await http.get(url);
     if (res.statusCode == 200) {
-      return Local.fromJson(json.decode(res.body), filtro.Referencia);
+      return Local.fromJson(json.decode(res.body), filter.reference);
     } else {
       return List();
     }
   }
 
-  Future<DistanciaTempo> getdistancia(LatLng l1, LatLng l2) async {
+  Future<DistanceTime> getDistance(LatLng l1, LatLng l2) async {
     String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=${l1
         .latitude},${l1.longitude}&destinations=${l2.latitude},${l2
-        .longitude}&mode=driving&language=pt-BR&key=${keyGoogle}";
+        .longitude}&mode=driving&language=pt-BR&key=$keyGoogle";
 
     http.Response response = await http.get(url);
     Map values = jsonDecode(response.body);
-    String distancia = values["rows"][0]["elements"][0]["distance"]["text"];
-    String distanciaKm = (values["rows"][0]["elements"][0]["distance"]["value"])
+    String distance = values["rows"][0]["elements"][0]["distance"]["text"];
+    String distanceKm = (values["rows"][0]["elements"][0]["distance"]["value"])
         .toString();
-    String tempo = values["rows"][0]["elements"][0]["duration"]["text"];
-    double valor = (((double.parse(distanciaKm)) * valorKm) / 1000)
+    String time = values["rows"][0]["elements"][0]["duration"]["text"];
+    double value = (((double.parse(distanceKm)) * valueKm) / 1000)
         .roundToDouble();
-    return DistanciaTempo(Distancia: distancia, Tempo: tempo, Valor: valor);
+    return DistanceTime(distance: distance, time: time, value: value);
   }
+
 }

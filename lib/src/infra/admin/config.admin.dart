@@ -1,22 +1,16 @@
 import 'package:gocar/src/entity/entities.dart';
 
-/*<key,urlfirebase>*/
-final dabaBaseTables = <String, String>{
-  'passageiro': 'Passageiro',
-  'motorista': 'Motorista',
-  'viagem': 'Viagem',
-  'relatorio': 'Relatorio',
-  'veiculo': 'Veiculo',
+/*<key, firebaseUrl>*/
+final dataBaseTables = <String, String>{
+  'passenger': 'Passenger',
+  'driver': 'Driver',
+  'trip': 'Trip',
+  'report': 'Report',
+  'Vehicle': 'Vehicle',
 };
 
+final PersonType configPersonType = PersonType.Passenger;
 
-final Ambiente configAmbiente = Ambiente.Passageiro;
-
-final double valorKm = 5;
+final double valueKm = 5;
 
 final keyGoogle = '';
-
-
-
-
-

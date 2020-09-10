@@ -1,63 +1,61 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:gocar/src/entity/entities.dart';
-import 'package:gocar/src/pages/motorista-page/pages.dart';
-import 'package:gocar/src/provider/blocs/passageiro-bloc/blocs.dart';
+import 'package:gocar/src/pages/pages.dart';
+import 'package:gocar/src/provider/blocs/blocs.dart';
 import 'package:gocar/src/provider/provider.dart';
 
 import 'infra/admin/admin.dart';
-import 'pages/passageiro-page/start-passageiro.page.dart';
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    List<Bloc<BlocBase>> blocsPassageiro = _blocPassageiro();
-    List<Bloc<BlocBase>> blocsMotorista = _blocMotorista();
+    List<Bloc<BlocBase>> passengerBlocs = _passengerBloc();
+    List<Bloc<BlocBase>> driverBlocs = _driverBloc();
 
     return BlocProvider(
-      blocs: configAmbiente == Ambiente.Passageiro
-          ? blocsPassageiro
-          : blocsMotorista,
+      blocs: configPersonType == PersonType.Passenger
+          ? passengerBlocs
+          : driverBlocs,
       child: MaterialApp(
           locale: Locale('pt', 'PT'),
           title: "GoCar App ",
           debugShowCheckedModeBanner: false,
-          home: configAmbiente == Ambiente.Passageiro
-              ? StartPassageiroPage()
-              : StartMotoristaPage(),
-          routes: configAmbiente == Ambiente.Passageiro
-              ? routesPassageiroConfig
-              : routesMotoristaConfig,
+          home: configPersonType == PersonType.Passenger
+              ? StartPassengerPage()
+              : StartDriverPage(),
+          routes: configPersonType == PersonType.Passenger
+              ? passengerRoutesConfig
+              : driverRoutesConfig,
           theme: ThemeData(
               fontFamily: "Raleway",
               scaffoldBackgroundColor: Colors.white,
-              textTheme: TextTheme(body1: TextStyle(fontSize: 16)))),
+              textTheme: TextTheme(bodyText2: TextStyle(fontSize: 16)))),
     );
   }
 
-  /*provider passageiro*/
-  List<Bloc<BlocBase>> _blocPassageiro() {
-    final List<Bloc> blocsPassageiro = [
+  /*passenger provider*/
+  List<Bloc<BlocBase>> _passengerBloc() {
+    final List<Bloc> passengerBlocs = [
       Bloc((i) => LoadingBloc()),
       Bloc((i) => HomeTabBloc()),
-      Bloc((i) => HomePassageiroBloc()),
-      Bloc((i) => AuthPassageiroBloc()),
-      Bloc((i) => ViagemPassageiroBloc()),
-      Bloc((i) => BasePassageiroBloc()),
+      Bloc((i) => PassengerHomeBloc()),
+      Bloc((i) => PassengerAuthBloc()),
+      Bloc((i) => PassengerTripBloc()),
+      Bloc((i) => BasePassengerBloc()),
     ];
-    return blocsPassageiro;
+    return passengerBlocs;
   }
 
-/*provider motorista*/
-  List<Bloc<BlocBase>> _blocMotorista() {
-    final List<Bloc> blocsPassageiro = [
+/*driver provider*/
+  List<Bloc<BlocBase>> _driverBloc() {
+    final List<Bloc> driverBlocs = [
       Bloc((i) => LoadingBloc()),
       Bloc((i) => HomeTabBloc()),
-      Bloc((i) => HomeMotoristaBloc()),
-      Bloc((i) => AuthMotoristaBloc()),
-      Bloc((i) => BaseMotoristaBloc()),
+      Bloc((i) => DriveHomeBloc()),
+      Bloc((i) => DriverAuthBloc()),
+      Bloc((i) => DriverBaseBloc()),
     ];
-    return blocsPassageiro;
+    return driverBlocs;
   }
 }

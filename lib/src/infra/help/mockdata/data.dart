@@ -1,1 +1,1 @@
-export 'veiculo.data.dart';
+export 'vehicle.data.dart';

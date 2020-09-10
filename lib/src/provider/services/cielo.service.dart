@@ -2,7 +2,7 @@ import 'package:flutter_cielo/flutter_cielo.dart';
 
 class CieloService {
 
-  Future<Sale> ExecutePagamento(Sale sale) async {
+  Future<Sale> ExecutePayment(Sale sale) async {
     final CieloEcommerce cielo = CieloEcommerce(
         environment: Environment.SANDBOX, // ambiente de desenvolvimento
         merchant: Merchant(

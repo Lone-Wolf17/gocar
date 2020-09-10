@@ -1,0 +1,10 @@
+export 'account/account.page.dart';
+export 'add-place/add-place.dart';
+export 'configuration/configuration.page.dart';
+export 'history/history.page.dart';
+export 'home/home.page.dart';
+export 'intro/intro.page.dart';
+export 'profile/profile.page.dart';
+export 'recover-password/recover-password.page.dart';
+export 'shared/shared.dart';
+export 'start-passenger.page.dart';
