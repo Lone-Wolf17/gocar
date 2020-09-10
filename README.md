@@ -16,16 +16,16 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 
-## Autenticação Google
+## Google Authentication
 
-- Primeiro Ativar no FireBase
-- Gerar Chave info : https://developers.google.com/android/guides/client-auth
+- First Activate on FireBase
+- Generate Key info : https://developers.google.com/android/guides/client-auth
     cmd: keytool -list -v -keystore C:\Users\italo\.android\debug.keystore --alias  androiddebugkey -storepass android -keypass android  
-                    Chave do GoCar é : 60:AA:67:2C:3E:0B:6A:94:84:04:4C:BE:32:E1:E7:E9:27:CE:BE:07
-- Após gera adicionar novo projeto android no firebase e adicionar a chave 
-- Baixa o json com a chave
-- Cola dentro pasta Android/App
-- Colocar no build.gradle  
+                   GoCar key is : 60:AA:67:2C:3E:0B:6A:94:84:04:4C:BE:32:E1:E7:E9:27:CE:BE:07
+- After generating key add new android project in firebase and add the key
+- Download the json with the key
+- Paste inside Android / App folder
+- Put in build.gradle
         buildscript {
           dependencies {
             // Add this line
