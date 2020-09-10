@@ -6,7 +6,6 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_cielo/flutter_cielo.dart';
 import 'package:gocar/src/entity/entities.dart';
 import 'package:gocar/src/infra/help/help.dart';
 import 'package:gocar/src/provider/provider.dart';
@@ -102,39 +101,39 @@ class StepPassengerDriverSearch {
     TripService _tripService = new TripService();
     var trip = await _baseBloc.tripFlow.first;
 
-    CieloService cieloService = CieloService();
-    Sale sale = Sale(
-        merchantOrderId: "123", // unique id of your sale
-        customer: Customer(
-            //user data object
-            name: ""),
-        payment: Payment(
-            // object for payment
-            type: TypePayment.creditCard,
-            //type of payment
-            amount: trip.carType == CarType.Pop
-                ? (trip.valuePop * 1000).toInt()
-                : (trip.valueTop * 1000).toInt(),
-            // purchase amount in cents
-            installments: 1,
-            //number of installments
-            softDescriptor: "",
-            //description that will appear on the user's statement. Only 15 characters
-            creditCard: CreditCard(
-              //Credit Card object
-              cardNumber: "",
-              //card number
-              holder: "",
-              //username printed on the card
-              expirationDate: "",
-              // expiration date
-              securityCode: "",
-              // security code
-              brand: "", // brand
-            )));
-    var result = await cieloService.ExecutePayment(sale);
-    trip.paymentId = result.payment.paymentId;
-    await _tripService.save(trip);
+    // CieloService cieloService = CieloService();
+    // Sale sale = Sale(
+    //     merchantOrderId: "123", // unique id of your sale
+    //     customer: Customer(
+    //         //user data object
+    //         name: ""),
+    //     payment: Payment(
+    //         // object for payment
+    //         type: TypePayment.creditCard,
+    //         //type of payment
+    //         amount: trip.carType == CarType.Pop
+    //             ? (trip.valuePop * 1000).toInt()
+    //             : (trip.valueTop * 1000).toInt(),
+    //         // purchase amount in cents
+    //         installments: 1,
+    //         //number of installments
+    //         softDescriptor: "",
+    //         //description that will appear on the user's statement. Only 15 characters
+    //         creditCard: CreditCard(
+    //           //Credit Card object
+    //           cardNumber: "",
+    //           //card number
+    //           holder: "",
+    //           //username printed on the card
+    //           expirationDate: "",
+    //           // expiration date
+    //           securityCode: "",
+    //           // security code
+    //           brand: "", // brand
+    //         )));
+    // var result = await cieloService.ExecutePayment(sale);
+    // trip.paymentId = result.payment.paymentId;
+    // await _tripService.save(trip);
   }
 
   Future tripRouteStarted(Trip viagem) async {

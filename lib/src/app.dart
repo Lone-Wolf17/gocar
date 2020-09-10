@@ -36,7 +36,7 @@ class App extends StatelessWidget {
 
   /*passenger provider*/
   List<Bloc<BlocBase>> _passengerBloc() {
-    final List<Bloc> passengerBlocs = [
+    final List<Bloc<BlocBase>> passengerBlocs = [
       Bloc((i) => LoadingBloc()),
       Bloc((i) => HomeTabBloc()),
       Bloc((i) => PassengerHomeBloc()),
@@ -49,7 +49,7 @@ class App extends StatelessWidget {
 
 /*driver provider*/
   List<Bloc<BlocBase>> _driverBloc() {
-    final List<Bloc> driverBlocs = [
+    final List<Bloc<BlocBase>> driverBlocs = [
       Bloc((i) => LoadingBloc()),
       Bloc((i) => HomeTabBloc()),
       Bloc((i) => DriveHomeBloc()),
