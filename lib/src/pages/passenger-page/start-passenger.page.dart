@@ -24,15 +24,19 @@ class _StartPassengerPageState extends State<StartPassengerPage> {
     return StreamBuilder(
         stream: _startPage.startFlux,
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          print('XXXX: HERE : 1');
           if (!snapshot.hasData) {
+            print('XXXX: HERE : 1A');
             return Container(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 color: Colors.white,
-                child: Center(child: CircularProgressIndicator(
+                child: Center(
+                    child: CircularProgressIndicator(
                   valueColor: new AlwaysStoppedAnimation<Color>(Colors.amber),
                 )));
           }
+          print('XXXX: HERE : 3 ${snapshot.data}');
           return snapshot.data ? PassengerIntroPage() : PassengerHomeTabPage();
         });
   }

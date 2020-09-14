@@ -4,6 +4,7 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:gocar/src/entity/entities.dart';
 import 'package:gocar/src/provider/provider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -50,7 +51,9 @@ class _HomePageState extends State<HomePage> {
             stream: _homeBloc.stepProcessFlux,
             builder: (BuildContext context,
                 AsyncSnapshot<StepPassengerHome> snapshot) {
+              print('XXXX: HERE : 6');
               if (!snapshot.hasData) {
+                print('XXXX: HERE : 6A');
                 return Center(
                     child: CircularProgressIndicator(
                   valueColor: new AlwaysStoppedAnimation<Color>(Colors.amber),
@@ -67,9 +70,9 @@ class _HomePageState extends State<HomePage> {
 
   /*build the screen according to the current stage of the process*/
   List<Widget> _configHome(StepPassengerHome stepHome) {
+    print('XXXX: HERE : 7 :: stephome = $stepHome');
     var widgetsHome = <Widget>[];
     widgetsHome = <Widget>[_buildGoogleMap()];
-
     switch (stepHome) {
       case StepPassengerHome.Start:
         widgetsHome.add(buttonBar(widget.changeDrawer, context));
@@ -120,7 +123,7 @@ class _HomePageState extends State<HomePage> {
     else if (next == StepPassengerHome.Start)
       await Future.delayed(const Duration(milliseconds: 1500), () {
         _gotoLocation(provider.originLatLng.latitude,
-            provider.originLatLng.longitude, 12, 0, 0);
+            provider.originLatLng.longitude, 15, 0, 0);
       });
     else if (next == StepPassengerHome.DriverAccepted &&
         provider.driverPositionLatLng != null &&
@@ -147,17 +150,23 @@ class _HomePageState extends State<HomePage> {
     return StreamBuilder(
         stream: _baseBloc.mapProviderFlux,
         builder: (BuildContext context, AsyncSnapshot<MapProvider> snapshot) {
+          print('XXXX: HERE : 8 snapshot.hasData = ${snapshot.hasData}');
+          MapProvider provider;
           if (!snapshot.hasData) {
+            print('XXXX: HERE : 8A');
+            _getUserLocation();
             return Center(child: CircularProgressIndicator(
               valueColor: new AlwaysStoppedAnimation<Color>(Colors.amber),
             ));
+          } else {
+            provider = snapshot.data;
           }
 
-          MapProvider provider = snapshot.data;
 
           /*reposition with zoom*/
           _resizeZoom(provider);
-
+          print("YYYY: ${provider.circleMap}");
+          print(provider);
           return Container(
             height: MediaQuery
                 .of(context)
@@ -184,8 +193,29 @@ class _HomePageState extends State<HomePage> {
         });
   }
 
-  Future<void> _gotoLocation(
-      double lat, double long, double zoom, double tilt, double bearing) async {
+  //! TO GET THE USERS LOCATION
+  void _getUserLocation() async {
+    print("GET USER METHOD RUNNING =====");
+    Position position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    // List<Placemark> placemark = await Geolocator()
+    //     .placemarkFromCoordinates(position.latitude, position.longitude);
+
+    print('XXXX: HERE : 17');
+    _baseBloc.mapProviderEvent.add(MapProvider(
+        originLatLng: LatLng(position.latitude, position.longitude)));
+    print('XXXX: HERE : 18');
+    // _initialPosition = LatLng(position.latitude, position.longitude);
+    // locationController.text = placemark[0].name;
+
+
+//    print("initial position is : ${ini}")
+//     locationController.text = placemark[0].name;
+//     notifyListeners();
+  }
+
+  Future<void> _gotoLocation(double lat, double long, double zoom, double tilt,
+      double bearing) async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
       target: LatLng(lat, long),

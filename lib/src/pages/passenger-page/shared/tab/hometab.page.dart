@@ -43,11 +43,12 @@ class _PassengerHomeTabPageState extends State<PassengerHomeTabPage> {
                   stream: _authBloc.userInfoFlux,
                   builder: (BuildContext context,
                       AsyncSnapshot<Passenger> snapshot) {
-                    if (!snapshot.hasData)
+                    if (!snapshot.hasData) {
                       return Container(
                         height: 1,
                         width: 1,
                       );
+                    }
 
                     Passenger passenger = snapshot.data;
 
@@ -145,9 +146,10 @@ class _PassengerHomeTabPageState extends State<PassengerHomeTabPage> {
       initialData: 0,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         var position = snapshot.hasData ? snapshot.data : 0;
-
+        print('XXXX: HERE : 4');
         switch (position) {
           case 0:
+            print('XXXX: HERE : 5');
             return HomePage(changeDrawer);
             break;
           case 1:

@@ -92,7 +92,9 @@ class BasePassengerBloc extends BlocBase {
   /*add point to provider map*/
   refreshProvider(LatLng location, String address,
       LocalReference localReference) async {
+    print('XXXX: HERE : 15');
     MapProvider provider = await mapProviderFlux.first;
+    print('XXXX: HERE : 16');
     provider.markers = Set<Marker>();
     if (localReference != LocalReference.Destination) {
       provider.originLatLng = location;

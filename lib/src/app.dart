@@ -18,7 +18,7 @@ class App extends StatelessWidget {
           ? passengerBlocs
           : driverBlocs,
       child: MaterialApp(
-          locale: Locale('pt', 'PT'),
+          locale: Locale('en', 'NG'),
           title: "GoCar App ",
           debugShowCheckedModeBanner: false,
           home: configPersonType == PersonType.Passenger

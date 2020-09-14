@@ -1,4 +1,5 @@
 import 'package:gocar/src/entity/entities.dart';
+import 'package:gocar/src/infra/admin/protected_data.dart';
 
 /*<key, firebaseUrl>*/
 final dataBaseTables = <String, String>{
@@ -13,4 +14,4 @@ final PersonType configPersonType = PersonType.Passenger;
 
 final double valueKm = 5;
 
-final keyGoogle = '';
+final keyGoogle = google_maps_api_key;

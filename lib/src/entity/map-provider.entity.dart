@@ -15,7 +15,7 @@ class MapProvider {
   MapProvider(
       {this.originAddress,
       this.destinationAddress,
-      this.zoom = 15.0,
+      this.zoom = 20.0,
       this.originLatLng,
       this.destinationLatLng,
       this.driverCurrentAddress,

@@ -41,7 +41,7 @@ class SearchInputWidget extends StatelessWidget {
     PassengerAuthBloc authBloc = BlocProvider.getBloc<PassengerAuthBloc>();
     PassengerHomeBloc homeBloc = BlocProvider.getBloc<PassengerHomeBloc>();
     HomeTabBloc homeTabBloc = BlocProvider.getBloc<HomeTabBloc>();
-
+    print('XXXX: HERE : 9');
     Passenger passenger = await authBloc.userInfoFlux.first;
 
     if (passenger == null) {
@@ -59,6 +59,7 @@ class SearchInputWidget extends StatelessWidget {
         homeTabBloc.tabPageControllerEvent.add(1);
       });
     } else {
+      print('XXXX: HERE : 10');
       homeBloc.stepProcessEvent
           .add(StepPassengerHome.SelectOriginAndDestination);
     }

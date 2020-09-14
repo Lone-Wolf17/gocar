@@ -48,7 +48,7 @@ class _SelectOriginDestinationWidgetState
     super.initState();
   }
 
-  /*when starting, this screen obtains the values ​​of the destination and current source of the screen and adds the input */
+  /*when starting, this screen obtains the values of the destination and current source of the screen and adds the input */
   _load() async {
     MapProvider provide = await _baseBloc.mapProviderFlux.first;
     originController.text = provide.originAddress;
@@ -58,12 +58,14 @@ class _SelectOriginDestinationWidgetState
 
   /*checks if the source and destination is properly added and if it has started the process*/
   _validateNextStep() async {
+    print('XXXX: HERE : 11');
     MapProvider provider = await _baseBloc.mapProviderFlux.first;
-
+    print('XXXX: HERE : 12 provider = $provider');
     if (provider.originAddress.isNotEmpty &&
         provider.destinationAddress.isNotEmpty &&
         originController.value.text != '' &&
         destinationController.value.text != '') {
+      print('XXXX: HERE : 13');
       /*get the distance*/
       _googleService
           .getDistance(provider.originLatLng, provider.destinationLatLng)
@@ -89,6 +91,7 @@ class _SelectOriginDestinationWidgetState
         await _baseBloc.orchestration();
       });
     }
+    print('XXXX: HERE : 14');
   }
 
   @override
@@ -320,6 +323,7 @@ class _SelectOriginDestinationWidgetState
                     if (localeTye == LocaleType.Home) {
                       LatLng latLng =
                       LatLng(passenger.home.latitude, passenger.home.longitude);
+
 
                       if (originFocus.hasFocus) {
                         _baseBloc.refreshProvider(
