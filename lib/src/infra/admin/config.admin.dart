@@ -1,5 +1,6 @@
 import 'package:gocar/src/entity/entities.dart';
-import 'package:gocar/src/infra/admin/protected_data.dart';
+import 'package:flutter_config/flutter_config.dart';
+
 
 /*<key, firebaseUrl>*/
 final dataBaseTables = <String, String>{
@@ -14,4 +15,4 @@ final PersonType configPersonType = PersonType.Passenger;
 
 final double valueKm = 5;
 
-final keyGoogle = google_maps_api_key;
+final keyGoogle = FlutterConfig.get('GOOGLE_MAPS_API_KEY');
